@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义 COC 骰娘</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .dice-button { margin: 5px; padding: 10px; font-size: 18px; }
+        .result { margin-top: 20px; font-size: 24px; }
+        .input-container { margin-top: 20px; }
+        label, input { font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>COC 骰娘</h1>
+
+    <!-- 固定骰子按钮 -->
+    <button class="dice-button" onclick="rollDice(100)">掷 1d100</button>
+    <button class="dice-button" onclick="rollDice(6)">掷 1d6</button>
+    <button class="dice-button" onclick="rollDice(3)">掷 1d3</button>
+
+    <!-- 自定义骰子部分 -->
+    <div class="input-container">
+        <label for="diceSides">骰子面数：</label>
+        <input type="number" id="diceSides" value="100" min="2">
+        <button class="dice-button" onclick="rollCustomDice()">掷自定义骰子</button>
+    </div>
+
+    <!-- 显示结果 -->
+    <div class="result" id="result">结果：-</div>
+
+    <script>
+        // 单个固定骰子掷点函数
+        function rollDice(sides) {
+            const result = Math.floor(Math.random() * sides) + 1;
+            document.getElementById('result').innerText = `掷 1d${sides} 结果：${result}`;
+        }
+
+        // 自定义单个骰子掷点函数
+        function rollCustomDice() {
+            const diceSides = document.getElementById('diceSides').value;
+            const roll = Math.floor(Math.random() * diceSides) + 1;
+
+            // 显示自定义骰子的结果
+            document.getElementById('result').innerText = `掷 1d${diceSides} 结果：${roll}`;
+        }
+    </script>
+</body>
+</html>
